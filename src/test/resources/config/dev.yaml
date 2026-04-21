@@ -1,0 +1,21 @@
+api:
+  baseUrl: "https://dev-api.example.com"
+  timeout: 30000
+  retryCount: 3
+
+auth:
+  username: "dev_user"
+  password: "dev_password_123"
+  tokenEndpoint: "/api/v1/auth/login"
+
+database:
+  host: "localhost"
+  port: 3306
+  name: "test_db"
+  username: "root"
+  password: ""
+
+test:
+  parallelExecution: false
+  maxRetries: 2
+  screenshotOnFailure: true

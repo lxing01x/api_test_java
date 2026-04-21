@@ -1,0 +1,14 @@
+common:
+  version: "1.0.0"
+  author: "Automation Team"
+
+headers:
+  common:
+    Content-Type: "application/json"
+    Accept: "application/json"
+    User-Agent: "Automation-Framework/1.0"
+
+logging:
+  level:
+    root: "INFO"
+    com.automation: "DEBUG"

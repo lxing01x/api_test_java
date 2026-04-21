@@ -1,0 +1,7 @@
+api:
+  baseUrl: "https://test-api.example.com"
+  timeout: 30000
+
+auth:
+  username: "test_user"
+  password: "test_password_456"

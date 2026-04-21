@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'maven-publish'
+}
+
+group = 'com.automation'
+version = '1.0.0'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.17'
+    
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-3.0'
+    testImplementation 'org.spockframework:spock-spring:2.3-groovy-3.0'
+    
+    testImplementation 'io.rest-assured:rest-assured:5.3.2'
+    testImplementation 'io.rest-assured:json-schema-validator:5.3.2'
+    testImplementation 'io.rest-assured:json-path:5.3.2'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    
+    testImplementation 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.3'
+    
+    testImplementation 'org.slf4j:slf4j-api:2.0.9'
+    testImplementation 'ch.qos.logback:logback-classic:1.4.11'
+    
+    testImplementation 'org.apache.commons:commons-lang3:3.13.0'
+    testImplementation 'commons-io:commons-io:2.14.0'
+}
+
+test {
+    useJUnitPlatform()
+    
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
+        exceptionFormat = 'full'
+    }
+    
+    systemProperty 'env', System.getProperty('env', 'dev')
+    systemProperty 'test.tag', System.getProperty('test.tag', '')
+    
+    reports {
+        html.required = true
+        junitXml.required = true
+    }
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.encoding = 'UTF-8'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
